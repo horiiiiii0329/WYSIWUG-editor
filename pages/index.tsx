@@ -78,17 +78,20 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Inserter
-        style={style}
-        onClickBoldButton={() => handleKeyCommand("bold", editorState)}
-      />
-      {mount && (
-        <Editor
-          editorState={editorState}
-          onChange={onChange}
-          handleKeyCommand={handleKeyCommand}
+      <div className={styles.wrapper}>
+        <Inserter
+          style={style}
+          onClickBoldButton={() => handleKeyCommand("bold", editorState)}
         />
-      )}
+
+        {mount && (
+          <Editor
+            editorState={editorState}
+            onChange={onChange}
+            handleKeyCommand={handleKeyCommand}
+          />
+        )}
+      </div>
     </>
   );
 };
