@@ -1,3 +1,5 @@
+import styles from "./Inserter.module.css";
+
 interface Props {
   style: React.CSSProperties;
   onClickBoldButton: () => void;
@@ -5,8 +7,8 @@ interface Props {
 
 function Inserter(props: Props) {
   return (
-    <div style={props.style}>
-      <button onClick={props.onClickBoldButton}></button>
+    <div style={props.style} className={styles.wrapper}>
+      <button onClick={props.onClickBoldButton}>bold</button>
     </div>
   );
 }
