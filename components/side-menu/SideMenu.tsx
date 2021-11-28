@@ -3,6 +3,7 @@ import {
   PhotographIcon,
   MinusIcon,
   VideoCameraIcon,
+  FilmIcon,
 } from "@heroicons/react/outline";
 import styles from "./SideMenu.module.css";
 import { useState, useEffect } from "react";
@@ -10,12 +11,15 @@ import { rootCertificates } from "tls";
 
 const iconStyle = { width: "12px" };
 
-function SideMenu({ editor }: any) {
+function SideMenu({ display, position, widgets, editor, fixed }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    setIsModalOpen(false);
-  }, []);
+    editor.on("selectionUpdate", () => {
+      // The selection has changed.
+      setIsModalOpen(false);
+    });
+  }, [editor]);
 
   return (
     <div className={styles.wrapper}>
@@ -32,13 +36,16 @@ function SideMenu({ editor }: any) {
       </div>
       <div
         className={styles.tooltip}
-        style={isModalopen ? { opacity: 1 } : { opacity: 0 }}
+        style={isModalopen ? { opacity: 1 } : { opacity: 0, display: "none" }}
       >
         <span className={styles.openIcon}>
           <PhotographIcon style={iconStyle} />
         </span>
         <span className={styles.openIcon}>
           <VideoCameraIcon style={iconStyle} />
+        </span>
+        <span className={styles.openIcon}>
+          <FilmIcon style={iconStyle} />
         </span>
         <span className={styles.openIcon}>
           <MinusIcon style={iconStyle} />
