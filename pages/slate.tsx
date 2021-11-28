@@ -3,16 +3,27 @@ import React, { useMemo, useState, useCallback } from "react";
 // Import the Slate editor factory.
 import { createEditor, Editor, Text, Transforms } from "slate";
 // Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from "slate-react";
+import { Slate, Editable, withReact, HistoryEditor } from "slate-react";
 
 import { BaseEditor, Descendant } from "slate";
 import { ReactEditor } from "slate-react";
-
-type CustomElement = { type: "paragraph"; children: CustomText[] };
-type CustomText = { text: string };
+import SideMenu from "../components/side-menu/SideMenu";
+export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type ParagraphElement = {
+  type: "paragraph";
+  children: CustomText[];
+};
+export type HeadingElement = {
+  type: "heading";
+  level: number;
+  children: CustomText[];
+};
+export type CustomElement = ParagraphElement | HeadingElement;
+export type FormattedText = { text: string; bold?: true };
+export type CustomText = FormattedText;
 declare module "slate" {
   interface CustomTypes {
-    Editor: BaseEditor & ReactEditor;
+    Editor: CustomEditor;
     Element: CustomElement;
     Text: CustomText;
   }
@@ -95,6 +106,7 @@ function SlateComponent() {
           Code Block
         </button>
       </div>
+      <SideMenu />
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
