@@ -3,12 +3,12 @@ import React, { useMemo, useState, useCallback } from "react";
 // Import the Slate editor factory.
 import { createEditor, Editor, Text, Transforms } from "slate";
 // Import the Slate components and React plugin.
-import { Slate, Editable, withReact, HistoryEditor } from "slate-react";
+import { Slate, Editable, withReact } from "slate-react";
 
 import { BaseEditor, Descendant } from "slate";
 import { ReactEditor } from "slate-react";
 import SideMenu from "../components/side-menu/SideMenu";
-export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
+export type CustomEditor = BaseEditor & ReactEditor;
 export type ParagraphElement = {
   type: "paragraph";
   children: CustomText[];
@@ -37,20 +37,20 @@ const initialValue: CustomElement[] = [
 ];
 
 const CustomEditor = {
-  isBoldMarkActive(editor) {
+  isBoldMarkActive(editor: any) {
     const [match] = Editor.nodes(editor, {
       match: (n) => n.bold === true,
       universal: true,
     });
     return !!match;
   },
-  isCodeBlockActive(editor) {
+  isCodeBlockActive(editor: any) {
     const [match] = Editor.nodes(editor, {
       match: (n) => n.type === "code",
     });
     return !!match;
   },
-  toggleBoldMark(editor) {
+  toggleBoldMark(editor: any) {
     const isActive = CustomEditor.isBoldMarkActive(editor);
     Transforms.setNodes(
       editor,
