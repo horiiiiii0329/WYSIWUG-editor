@@ -1,7 +1,7 @@
 // Import React dependencies.
 import React, { useMemo, useState, useCallback } from "react";
 // Import the Slate editor factory.
-import { createEditor, Editor, Transforms } from "slate";
+import { createEditor, Editor, Text, Transforms } from "slate";
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from "slate-react";
 
@@ -39,23 +39,45 @@ function SlateComponent() {
     }
   }, []);
 
+  const renderLeaf = useCallback((props) => {
+    return <Leaf {...props} />;
+  }, []);
+
   return (
     <Slate value={value} onChange={setValue} editor={editor}>
       <Editable
         renderElement={renderElement}
+        renderLeaf={renderLeaf}
         onKeyDown={(event) => {
-          if (event.key === "`" && event.ctrlKey) {
-            // Prevent the "`" from being inserted by default.
-            event.preventDefault();
-            const [match] = Editor.nodes(editor, {
-              match: (n) => n.type === "code",
-            });
-            // Otherwise, set the currently selected blocks type to "code".
-            Transforms.setNodes(
-              editor,
-              { type: match ? "paragraph" : "code" },
-              { match: (n) => Editor.isBlock(editor, n) }
-            );
+          if (!event.ctrlKey) {
+            return;
+          }
+          switch (event.key) {
+            // When "`" is pressed, keep our existing code block logic.
+            case "`": {
+              event.preventDefault();
+              const [match] = Editor.nodes(editor, {
+                match: (n) => n.type === "code",
+              });
+              Transforms.setNodes(
+                editor,
+                { type: match ? "paragraph" : "code" },
+                { match: (n) => Editor.isBlock(editor, n) }
+              );
+              break;
+            }
+            // When "B" is pressed, bold the text in the selection.
+            case "b": {
+              event.preventDefault();
+              Transforms.setNodes(
+                editor,
+                { bold: true },
+                // Apply it to text nodes, and split the text node up if the
+                // selection is overlapping only part of it.
+                { match: (n) => Text.isText(n), split: true }
+              );
+              break;
+            }
           }
         }}
       />
@@ -73,5 +95,16 @@ const CodeElement = (props: any) => {
 
 const DefaultElement = (props: any) => {
   return <p {...props.attributes}>{props.children}</p>;
+};
+
+const Leaf = (props: any) => {
+  return (
+    <span
+      {...props.attributes}
+      style={{ fontWeight: props.leaf.bold ? "bold" : "normal" }}
+    >
+      {props.children}
+    </span>
+  );
 };
 export default SlateComponent;
