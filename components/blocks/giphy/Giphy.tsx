@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import styles from "./Giphy.module.css";
 
 function Giphy({ handleSelected }: any) {
   const [gifs, setGif] = useState<any>([]);
@@ -17,6 +18,10 @@ function Giphy({ handleSelected }: any) {
     search(term);
   };
 
+  useEffect(() => {
+    search("", "trend");
+  }, []);
+
   const search = (term: any, kind = "search") => {
     const url =
       kind === "search"
@@ -28,7 +33,7 @@ function Giphy({ handleSelected }: any) {
       .get(link)
       .then((response) => {
         // handle success
-        setGif(response);
+        setGif(response.data.data);
         // console.log(response);
       })
       .catch((error) => {
@@ -43,9 +48,9 @@ function Giphy({ handleSelected }: any) {
   };
 
   return (
-    <div>
-      <div>
-        <div>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.searchbox}>
           <input
             ref={(c) => setInput(c)}
             type="text"
@@ -55,18 +60,21 @@ function Giphy({ handleSelected }: any) {
             onKeyDown={onSearchSubmit}
           />
         </div>
-        <div>
-          {gifs.map((item: any) => {
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              alt="giphy"
-              key={`giphy-${item.id}`}
-              onClick={(_e) => handleSelected(item)}
-              height={item.images.fixed_width_downsampled.height}
-              width={item.images.fixed_width_downsampled.width}
-              src={item.images.fixed_width_downsampled.url}
-            />;
-          })}
+        <div className={styles.gridContainer}>
+          <div className={styles.gridList}>
+            {gifs.map((item: any) => {
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                alt="giphy"
+                key={`giphy-${item.id}`}
+                onClick={(_e) => handleSelected(item)}
+                height={item.images.fixed_width_downsampled.height}
+                width={item.images.fixed_width_downsampled.width}
+                src={item.images.fixed_width_downsampled.url}
+                className={styles.image}
+              />;
+            })}
+          </div>
         </div>
       </div>
     </div>

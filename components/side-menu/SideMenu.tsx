@@ -8,6 +8,7 @@ import {
 import styles from "./SideMenu.module.css";
 import { useState, useEffect } from "react";
 import { rootCertificates } from "tls";
+import GiphyJS from "../blocks/giphy/GiphyJS";
 
 const iconStyle = { width: "12px" };
 
@@ -46,6 +47,12 @@ function SideMenu({ display, position, widgets, editor, fixed }: any) {
         </span>
         <span className={styles.openIcon}>
           <FilmIcon style={iconStyle} />
+          <GiphyJS
+            editor={editor}
+            closeMenu={() => {
+              setIsModalOpen(false);
+            }}
+          />
         </span>
         <span className={styles.openIcon}>
           <MinusIcon style={iconStyle} />
