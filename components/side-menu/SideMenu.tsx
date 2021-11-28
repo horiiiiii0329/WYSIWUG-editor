@@ -10,7 +10,7 @@ import { rootCertificates } from "tls";
 
 const iconStyle = { width: "12px" };
 
-function SideMenu() {
+function SideMenu({ editor }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
 
   return (

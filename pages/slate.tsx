@@ -106,7 +106,7 @@ function SlateComponent() {
           Code Block
         </button>
       </div>
-      <SideMenu />
+      <SideMenu editor={editor} />
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
