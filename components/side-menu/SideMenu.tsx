@@ -8,7 +8,7 @@ import styles from "./SideMenu.module.css";
 import { useState } from "react";
 import { rootCertificates } from "tls";
 
-const iconStyle = { width: "15px" };
+const iconStyle = { width: "12px" };
 
 function SideMenu() {
   const [isModalopen, setIsModalOpen] = useState(false);
@@ -30,13 +30,13 @@ function SideMenu() {
         className={styles.tooltip}
         style={isModalopen ? { opacity: 1 } : { opacity: 0 }}
       >
-        <span>
+        <span className={styles.openIcon}>
           <PhotographIcon style={iconStyle} />
         </span>
-        <span>
+        <span className={styles.openIcon}>
           <VideoCameraIcon style={iconStyle} />
         </span>
-        <span>
+        <span className={styles.openIcon}>
           <MinusIcon style={iconStyle} />
         </span>
       </div>
