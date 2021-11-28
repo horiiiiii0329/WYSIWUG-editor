@@ -5,13 +5,17 @@ import {
   VideoCameraIcon,
 } from "@heroicons/react/outline";
 import styles from "./SideMenu.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { rootCertificates } from "tls";
 
 const iconStyle = { width: "12px" };
 
 function SideMenu({ editor }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setIsModalOpen(false);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
