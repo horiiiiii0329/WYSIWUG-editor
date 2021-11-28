@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-function Giphy() {
+function Giphy({ handleSelected }: any) {
   const [gifs, setGif] = useState<any>([]);
   const [term, setTerm] = useState("");
   const [limit, setLimit] = useState(10);
@@ -22,7 +22,7 @@ function Giphy() {
       kind === "search"
         ? `https://api.giphy.com/v1/gifs/search?q=${term}`
         : `https://api.giphy.com/v1/gifs/trending?q=${term}`;
-    const link = `${url}&limit=${limit}&api_key=${this.props.apiKey}`;
+    const link = `${url}&limit=${limit}&api_key=KpSOOvXbvl7rusKvx7Axl8BFI2QjmYXY`;
 
     axios
       .get(link)
@@ -56,12 +56,12 @@ function Giphy() {
           />
         </div>
         <div>
-          {gifs.map((item) => {
+          {gifs.map((item: any) => {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               alt="giphy"
               key={`giphy-${item.id}`}
-              onClick={(_e) => this.props.handleSelected(o)}
+              onClick={(_e) => handleSelected(item)}
               height={item.images.fixed_width_downsampled.height}
               width={item.images.fixed_width_downsampled.width}
               src={item.images.fixed_width_downsampled.url}
