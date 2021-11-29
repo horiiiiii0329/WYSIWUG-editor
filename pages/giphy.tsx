@@ -47,6 +47,8 @@ function Giphy({ handleSelected }: any) {
     setTerm(term);
   };
 
+  console.log(gifs);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -65,12 +67,12 @@ function Giphy({ handleSelected }: any) {
             {gifs.map((item: any) => {
               // eslint-disable-next-line @next/next/no-img-element
               <img
+                src={item.images.fixed_width_downsampled.url}
                 alt="giphy"
                 key={`giphy-${item.id}`}
                 onClick={(_e) => handleSelected(item)}
                 height={item.images.fixed_width_downsampled.height}
                 width={item.images.fixed_width_downsampled.width}
-                src={item.images.fixed_width_downsampled.url}
                 className={styles.image}
               />;
             })}
