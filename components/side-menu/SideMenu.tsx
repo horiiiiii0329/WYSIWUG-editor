@@ -47,12 +47,6 @@ function SideMenu({ display, position, widgets, editor, fixed }: any) {
         </span>
         <span className={styles.openIcon}>
           <FilmIcon style={iconStyle} />
-          <GiphyJS
-            editor={editor}
-            closeMenu={() => {
-              setIsModalOpen(false);
-            }}
-          />
         </span>
         <span className={styles.openIcon}>
           <MinusIcon style={iconStyle} />

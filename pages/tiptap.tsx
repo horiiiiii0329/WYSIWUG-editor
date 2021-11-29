@@ -10,6 +10,7 @@ import StarterKit from "@tiptap/starter-kit";
 import SideMenu from "../components/side-menu/SideMenu";
 import styles from "../styles/tiptap.module.css";
 import axios from "axios";
+import PopupMenu from "../components/popupmenu/popupMenu";
 
 const MenuBar = ({ editor }: any) => {
   if (!editor) {
@@ -163,7 +164,6 @@ export default () => {
 
   return (
     <div className={styles.wrapper}>
-      <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       {editor && (
         <BubbleMenu
@@ -171,24 +171,7 @@ export default () => {
           tippyOptions={{ duration: 100 }}
           editor={editor}
         >
-          <button
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            className={editor.isActive("bold") ? "is-active" : ""}
-          >
-            Bold
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleItalic().run()}
-            className={editor.isActive("italic") ? "is-active" : ""}
-          >
-            Italic
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleStrike().run()}
-            className={editor.isActive("strike") ? "is-active" : ""}
-          >
-            Strike
-          </button>
+          <PopupMenu editor={editor} />
         </BubbleMenu>
       )}
 
