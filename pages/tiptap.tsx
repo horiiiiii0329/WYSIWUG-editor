@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   useEditor,
   EditorContent,
@@ -9,6 +9,7 @@ import {
 import StarterKit from "@tiptap/starter-kit";
 import SideMenu from "../components/side-menu/SideMenu";
 import styles from "../styles/tiptap.module.css";
+import axios from "axios";
 
 const MenuBar = ({ editor }: any) => {
   if (!editor) {
@@ -128,12 +129,37 @@ const MenuBar = ({ editor }: any) => {
 // eslint-disable-next-line import/no-anonymous-default-export
 // eslint-disable-next-line react/display-name
 export default () => {
+  const [gif, setGif] = useState([]);
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
      aa
     `,
   });
+
+  useEffect(() => {
+    search("", "trend");
+  }, []);
+
+  const search = (term: any, kind = "search") => {
+    const url =
+      kind === "search"
+        ? `https://api.giphy.com/v1/gifs/search?q=lololol`
+        : `https://api.giphy.com/v1/gifs/trending?q=lololol`;
+    const link = `${url}&limit=10&api_key=KpSOOvXbvl7rusKvx7Axl8BFI2QjmYXY`;
+
+    axios
+      .get(link)
+      .then((response) => {
+        // handle success
+        setGif(response.data.data);
+        // console.log(response);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  };
 
   return (
     <div className={styles.wrapper}>
