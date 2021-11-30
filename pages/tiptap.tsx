@@ -10,7 +10,7 @@ import StarterKit from "@tiptap/starter-kit";
 import SideMenu from "../components/side-menu/SideMenu";
 import styles from "../styles/tiptap.module.css";
 import axios from "axios";
-import PopupMenu from "../components/popupmenu/popupMenu";
+import PopupMenu from "../components/popupmenu/PopupMenu";
 
 const MenuBar = ({ editor }: any) => {
   if (!editor) {

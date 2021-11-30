@@ -1,24 +1,22 @@
-function popupMenu({ editor }: any) {
-  function promptForLink(ev) {
-    /*let selection = this.props.editorState.getSelection()
-    if (!selection.isCollapsed()) {
-      return this.props.enableLinkMode(ev)
-    }*/
-    return enableLinkMode(ev);
-  }
+import "remixicon/fonts/remixicon.css";
+import { useState } from "react";
+import {
+  bold,
+  italic,
+  insertunorderedlist,
+  insertorderedlist,
+  link,
+  close,
+  h1,
+  h2,
+  h3,
+  h4,
+  blockquote,
+  code,
+} from "../icon";
 
-  return (
-    <li
-      className={`dante-menu-button ${selected ? "active" : ""}`}
-      onMouseDown={promptForLink}
-    >
-      <span className={"dante-icon"}>{link()}</span>
-    </li>
-  );
-}
-
-export default function MenuBar({ editor, fixed }) {
-  const [linkState, setLinkState] = useState({
+function PopupMenu({ editor }: any) {
+  const [linkState, setLinkState] = useState<any>({
     link_mode: false,
     menu_style: {
       minWidth: "200px",
@@ -31,35 +29,13 @@ export default function MenuBar({ editor, fixed }) {
     return null;
   }
 
-  function displayLinkMode() {
-    if (linkState.link_mode) {
-      return "dante-menu--linkmode";
-    } else {
-      return "";
-    }
-  }
-
-  function displayActiveMenu() {
-    if (this.state.show) {
-      return "dante-menu--active";
-    } else {
-      return "";
-    }
-  }
-
-  function itemClass(kind, opts = null) {
-    if (!opts)
-      return `dante-menu-button ${editor.isActive(kind) ? "active" : ""}`;
-    return `dante-menu-button ${editor.isActive(kind, opts) ? "active" : ""}`;
-  }
-
-  function handleInputEnter(e) {
+  function handleInputEnter(e: any) {
     if (e.which === 13) {
       return confirmLink(e);
     }
   }
 
-  function confirmLink(e) {
+  function confirmLink(e: any) {
     e.preventDefault();
     let url = e.currentTarget.value;
     if (url === "") {
@@ -70,7 +46,7 @@ export default function MenuBar({ editor, fixed }) {
     _disableLinkMode(e);
   }
 
-  function _enableLinkMode(ev) {
+  function _enableLinkMode(ev: any) {
     ev.preventDefault();
     setLinkState({
       link_mode: true,
@@ -80,7 +56,7 @@ export default function MenuBar({ editor, fixed }) {
     });
   }
 
-  function _disableLinkMode(ev) {
+  function _disableLinkMode(ev: any) {
     ev.preventDefault();
     setLinkState({
       link_mode: false,
@@ -89,117 +65,97 @@ export default function MenuBar({ editor, fixed }) {
     });
   }
 
-  function _clickBlockInlineStyle(style) {
+  function _clickBlockInlineStyle(style: any) {
     editor.chain().focus().setColor(style).run();
   }
 
-  function fixedStyles() {
-    if (!fixed) return { width: `${11 * 43}px` };
-    if (fixed) return { position: `sticky`, top: "0" };
-  }
+  // function fixedStyles() {
+  //   if (!fixed) return { width: `${11 * 43}px` };
+  //   if (fixed) return { position: `sticky`, top: "0" };
+  // }
 
-  function renderMenu() {
-    if (!editor.isEditable) return null;
-    if (editor.isActive("ImageBlock")) return null;
+  if (!editor.isEditable) return null;
+  if (editor.isActive("ImageBlock")) return null;
 
-    return (
-      <AnchorStyle
-        fixed={fixed}
-        className={`dante-menu ${displayLinkMode()}`}
-        style={fixedStyles()}
-      >
-        <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
-          <input
-            className="dante-menu-input"
-            placeholder={"put your souce here"}
-            onKeyPress={handleInputEnter}
-            //defaultValue={ this.getDefaultValue() }
-          />
-          <div className="dante-menu-button" onMouseDown={_disableLinkMode}>
-            <span className={"dante-icon"}>{close()}</span>
-          </div>
+  return (
+    <div>
+      <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
+        <input
+          className="dante-menu-input"
+          placeholder={"put your souce here"}
+          onKeyPress={handleInputEnter}
+          //defaultValue={ this.getDefaultValue() }
+        />
+        <div className="dante-menu-button" onMouseDown={_disableLinkMode}>
+          <span className={"dante-icon"}>{close()}</span>
         </div>
+      </div>
 
-        <div className="dante-menu-buttons" style={linkState.menu_style}>
-          <li
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            className={itemClass("bold")}
-          >
-            <span className={"dante-icon"}>{bold()}</span>
-          </li>
-          <li
-            onClick={() => editor.chain().focus().toggleItalic().run()}
-            className={itemClass("italic")}
-          >
-            <span className={"dante-icon"}>{italic()}</span>
-          </li>
+      <div className="dante-menu-buttons" style={linkState.menu_style}>
+        <li
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          className={"bold"}
+        >
+          <span className={"dante-icon"}>{bold()}</span>
+        </li>
+        <li
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          className={"italic"}
+        >
+          <span className={"dante-icon"}>{italic()}</span>
+        </li>
 
-          <DanteTooltipColor
-            styles={{}}
-            editor={editor}
-            enableLinkMode={_enableLinkMode}
-            value={"#000"}
-            style_type="color"
-            handleClick={_clickBlockInlineStyle}
-            show={show}
-          />
+        <div style={{}} onClick={_clickBlockInlineStyle} />
 
-          <DanteTooltipLink
-            selected={editor.isActive("link")}
-            editor={editor}
-            enableLinkMode={_enableLinkMode}
-          />
-          <li
-            onClick={() =>
-              editor.chain().focus().toggleHeading({ level: 1 }).run()
-            }
-            className={itemClass("heading", { level: 1 })}
-          >
-            <span className={"dante-icon"}>{h1()}</span>
-          </li>
-          <li
-            onClick={() =>
-              editor.chain().focus().toggleHeading({ level: 2 }).run()
-            }
-            className={itemClass("heading", { level: 2 })}
-          >
-            <span className={"dante-icon"}>{h2()}</span>
-          </li>
-          <li
-            onClick={() =>
-              editor.chain().focus().toggleHeading({ level: 3 }).run()
-            }
-            className={itemClass("heading", { level: 3 })}
-          >
-            <span className={"dante-icon"}>{h3()}</span>
-          </li>
-          <li
-            onClick={() => editor.chain().focus().toggleBulletList().run()}
-            className={itemClass("bulletList")}
-          >
-            <span className={"dante-icon"}>{insertunorderedlist()}</span>
-          </li>
-          <li
-            onClick={() => editor.chain().focus().toggleOrderedList().run()}
-            className={itemClass("orderedList")}
-          >
-            <span className={"dante-icon"}>{insertorderedlist()}</span>
-          </li>
-          <li
-            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-            className={itemClass("codeBlock")}
-          >
-            <span className={"dante-icon"}>{code()}</span>
-          </li>
-          <li
-            onClick={() => editor.chain().focus().toggleBlockquote().run()}
-            className={itemClass("blockquote")}
-          >
-            <span className={"dante-icon"}>{blockquote()}</span>
-          </li>
-        </div>
-      </AnchorStyle>
-    );
+        <div />
+        <li
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
+        >
+          <span className={"dante-icon"}>{h1()}</span>
+        </li>
+        <li
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
+        >
+          <span className={"dante-icon"}>{h2()}</span>
+        </li>
+        <li
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
+        >
+          <span className={"dante-icon"}>{h3()}</span>
+        </li>
+        <li
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={"bulletList"}
+        >
+          <span className={"dante-icon"}>{insertunorderedlist()}</span>
+        </li>
+        <li
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={"orderedList"}
+        >
+          <span className={"dante-icon"}>{insertorderedlist()}</span>
+        </li>
+        <li
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={"codeBlock"}
+        >
+          <span className={"dante-icon"}>{code()}</span>
+        </li>
+        <li
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={"blockquote"}
+        >
+          <span className={"dante-icon"}>{blockquote()}</span>
+        </li>
+      </div>
+    </div>
+  );
 }
 
-export default popupMenu;
+export default PopupMenu;
