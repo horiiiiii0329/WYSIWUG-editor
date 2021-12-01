@@ -1,5 +1,5 @@
 import "remixicon/fonts/remixicon.css";
-import { useState } from "react";
+import { useCallback } from "react";
 import {
   bold,
   italic,
@@ -40,15 +40,11 @@ function PopupMenu({ editor }: any) {
   return (
     <div>
       <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
-        <input
-          className="dante-menu-input"
-          placeholder={"urlを入れてください"}
-          onClick={setLink}
-          //defaultValue={ this.getDefaultValue() }
-        />
-        {/* <div className="dante-menu-button" onMouseDown={_disableLinkMode}>
-          <span className={"dante-icon"}>{close()}</span>
-        </div> */}
+        <li className={``}>
+          <span className={"dante-icon"} onClick={setLink}>
+            {link()}
+          </span>
+        </li>
       </div>
 
       <div className="dante-menu-buttons">
@@ -64,9 +60,7 @@ function PopupMenu({ editor }: any) {
         >
           <span className={"dante-icon"}>{italic()}</span>
         </li>
-        <div style={{}} onClick={_clickBlockInlineStyle} />
-        　　　　　　　　
-        <div />
+
         <li
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
