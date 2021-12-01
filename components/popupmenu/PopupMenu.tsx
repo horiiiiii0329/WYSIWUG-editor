@@ -16,82 +16,42 @@ import {
 } from "../icon";
 
 function PopupMenu({ editor }: any) {
-  const [linkState, setLinkState] = useState<any>({
-    link_mode: false,
-    menu_style: {
-      minWidth: "200px",
-    },
-  });
+  const setLink = useCallback(() => {
+    const previousUrl = editor.getAttributes("link").href;
+    const url = window.prompt("URL", previousUrl);
 
-  const [show, setShow] = useState(false);
+    if (url === null) {
+      return;
+    }
+
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+
+      return;
+    }
+
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  }, [editor]);
 
   if (!editor) {
     return null;
   }
-
-  function handleInputEnter(e: any) {
-    if (e.which === 13) {
-      return confirmLink(e);
-    }
-  }
-
-  function confirmLink(e: any) {
-    e.preventDefault();
-    let url = e.currentTarget.value;
-    if (url === "") {
-      editor.chain().focus().unsetLink().run();
-    } else {
-      editor.chain().focus().setLink({ href: url }).run();
-    }
-    _disableLinkMode(e);
-  }
-
-  function _enableLinkMode(ev: any) {
-    ev.preventDefault();
-    setLinkState({
-      link_mode: true,
-      menu_style: {
-        minWidth: "200px",
-      },
-    });
-  }
-
-  function _disableLinkMode(ev: any) {
-    ev.preventDefault();
-    setLinkState({
-      link_mode: false,
-      url: "",
-      menu_style: {},
-    });
-  }
-
-  function _clickBlockInlineStyle(style: any) {
-    editor.chain().focus().setColor(style).run();
-  }
-
-  // function fixedStyles() {
-  //   if (!fixed) return { width: `${11 * 43}px` };
-  //   if (fixed) return { position: `sticky`, top: "0" };
-  // }
-
-  if (!editor.isEditable) return null;
-  if (editor.isActive("ImageBlock")) return null;
 
   return (
     <div>
       <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
         <input
           className="dante-menu-input"
-          placeholder={"put your souce here"}
-          onKeyPress={handleInputEnter}
+          placeholder={"urlを入れてください"}
+          onClick={setLink}
           //defaultValue={ this.getDefaultValue() }
         />
-        <div className="dante-menu-button" onMouseDown={_disableLinkMode}>
+        {/* <div className="dante-menu-button" onMouseDown={_disableLinkMode}>
           <span className={"dante-icon"}>{close()}</span>
-        </div>
+        </div> */}
       </div>
 
-      <div className="dante-menu-buttons" style={linkState.menu_style}>
+      <div className="dante-menu-buttons">
         <li
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={"bold"}
@@ -104,9 +64,8 @@ function PopupMenu({ editor }: any) {
         >
           <span className={"dante-icon"}>{italic()}</span>
         </li>
-
         <div style={{}} onClick={_clickBlockInlineStyle} />
-
+        　　　　　　　　
         <div />
         <li
           onClick={() =>
