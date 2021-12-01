@@ -14,6 +14,7 @@ import {
   blockquote,
   code,
 } from "../icon";
+import styles from "./PopupMenu.module.css";
 
 function PopupMenu({ editor }: any) {
   const setLink = useCallback(() => {
@@ -41,75 +42,65 @@ function PopupMenu({ editor }: any) {
   if (editor.isActive("ImageBlock")) return null;
 
   return (
-    <div>
-      <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
-        <li className={``}>
-          <span className={"dante-icon"} onClick={setLink}>
-            {link()}
-          </span>
-        </li>
-      </div>
+    <div className={styles.wrapper}>
+      <li className={``}>
+        <span className={styles.icon} onClick={setLink}>
+          {link()}
+        </span>
+      </li>
 
-      <div className="dante-menu-buttons">
-        <li
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={"bold"}
-        >
-          <span className={"dante-icon"}>{bold()}</span>
-        </li>
-        <li
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={"italic"}
-        >
-          <span className={"dante-icon"}>{italic()}</span>
-        </li>
+      <li
+        onClick={() => editor.chain().focus().toggleBold().run()}
+        className={"bold"}
+      >
+        <span className={styles.icon}>{bold()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+        className={"italic"}
+      >
+        <span className={styles.icon}>{italic()}</span>
+      </li>
 
-        <li
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-        >
-          <span className={"dante-icon"}>{h1()}</span>
-        </li>
-        <li
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-        >
-          <span className={"dante-icon"}>{h2()}</span>
-        </li>
-        <li
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-        >
-          <span className={"dante-icon"}>{h3()}</span>
-        </li>
-        <li
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={"bulletList"}
-        >
-          <span className={"dante-icon"}>{insertunorderedlist()}</span>
-        </li>
-        <li
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={"orderedList"}
-        >
-          <span className={"dante-icon"}>{insertorderedlist()}</span>
-        </li>
-        <li
-          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={"codeBlock"}
-        >
-          <span className={"dante-icon"}>{code()}</span>
-        </li>
-        <li
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={"blockquote"}
-        >
-          <span className={"dante-icon"}>{blockquote()}</span>
-        </li>
-      </div>
+      <li
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+      >
+        <span className={styles.icon}>{h1()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+      >
+        <span className={styles.icon}>{h2()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+      >
+        <span className={styles.icon}>{h3()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleBulletList().run()}
+        className={"bulletList"}
+      >
+        <span className={styles.icon}>{insertunorderedlist()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        className={"orderedList"}
+      >
+        <span className={styles.icon}>{insertorderedlist()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        className={"codeBlock"}
+      >
+        <span className={styles.icon}>{code()}</span>
+      </li>
+      <li
+        onClick={() => editor.chain().focus().toggleBlockquote().run()}
+        className={"blockquote"}
+      >
+        <span className={styles.icon}>{blockquote()}</span>
+      </li>
     </div>
   );
 }
