@@ -37,6 +37,9 @@ function PopupMenu({ editor }: any) {
     return null;
   }
 
+  if (!editor.isEditable) return null;
+  if (editor.isActive("ImageBlock")) return null;
+
   return (
     <div>
       <div className="dante-menu-linkinput" style={{ width: `${11 * 43}px` }}>
