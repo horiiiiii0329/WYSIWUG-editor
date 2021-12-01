@@ -1,22 +1,21 @@
 .wrapper {
   z-index: 10;
-  display: none;
   top: 0;
   left: 0;
   display: block;
   white-space: nowrap;
   list-style: none;
-  margin: 0;
   padding: 0;
   line-height: 0;
   display: flex;
-  background: rgba(100, 100, 100, 0.2);
+  background: white;
+  border: black solid 1px;
   overflow: hidden;
   padding-left: 0;
   padding-right: 0;
-
   line-height: 1;
   margin: 0px;
+  align-items: center;
 }
 
 .wrapper:first-of-type {

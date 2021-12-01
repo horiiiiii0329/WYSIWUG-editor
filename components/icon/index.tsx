@@ -279,8 +279,8 @@ export function bold() {
   return (
     <svg
       className="icon-bold"
-      width="22px"
-      height="22px"
+      width="16px"
+      height="16px"
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -297,8 +297,8 @@ export function italic() {
   return (
     <svg
       className="icon-italic"
-      width="22px"
-      height="22px"
+      width="16px"
+      height="16px"
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -316,8 +316,8 @@ export function insertunorderedlist() {
   return (
     <svg
       className="icon-unorderedlist"
-      width="22px"
-      height="22px"
+      width="16px"
+      height="16px"
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -335,8 +335,8 @@ export function insertorderedlist() {
   return (
     <svg
       className="icon-orderedlist"
-      width="22px"
-      height="22px"
+      width="16px"
+      height="16px"
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -437,8 +437,8 @@ export function link() {
   return (
     <svg
       className="icon-link"
-      width="22px"
-      height="22px"
+      width="18px"
+      height="18px"
       viewBox="0 0 22 22"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -474,8 +474,8 @@ export function close() {
 export function blockquote() {
   return (
     <svg
-      width="19"
-      height="22"
+      width="11"
+      height="14"
       viewBox="0 0 31 30"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -492,8 +492,8 @@ export function blockquote() {
 export function code() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="15"
+      height="15"
       viewBox="0 0 34 31"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -510,8 +510,8 @@ export function code() {
 export function h1() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="15"
+      height="15"
       viewBox="0 0 34 31"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -528,8 +528,8 @@ export function h1() {
 export function h2() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="15"
+      height="15"
       viewBox="0 0 34 31"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -546,8 +546,8 @@ export function h2() {
 export function h3() {
   return (
     <svg
-      width="24"
-      height="24"
+      width="15"
+      height="15"
       viewBox="0 0 34 31"
       xmlns="http://www.w3.org/2000/svg"
     >

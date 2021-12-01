@@ -6,11 +6,9 @@ import {
   insertunorderedlist,
   insertorderedlist,
   link,
-  close,
   h1,
   h2,
   h3,
-  h4,
   blockquote,
   code,
 } from "../icon";
