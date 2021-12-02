@@ -12,15 +12,10 @@ import GiphyJS from "../blocks/giphy/GiphyJS";
 
 const iconStyle = { width: "12px" };
 
-function SideMenu({ display, position, widgets, editor, fixed }: any) {
+function SideMenu({ editor }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    editor.on("selectionUpdate", () => {
-      // The selection has changed.
-      setIsModalOpen(false);
-    });
-  }, [editor]);
+  const setHorizontal = () => editor.chain().focus().setHorizontalRule().run();
 
   return (
     <div className={styles.wrapper}>
@@ -48,7 +43,7 @@ function SideMenu({ display, position, widgets, editor, fixed }: any) {
         <span className={styles.openIcon}>
           <FilmIcon style={iconStyle} />
         </span>
-        <span className={styles.openIcon}>
+        <span className={styles.openIcon} onClick={setHorizontal}>
           <MinusIcon style={iconStyle} />
         </span>
       </div>
