@@ -17,6 +17,13 @@ function SideMenu({ editor }: any) {
 
   const setHorizontal = () => editor.chain().focus().setHorizontalRule().run();
 
+  const addImage = () => {
+    const url = window.prompt("画像リンクを入力してください。");
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div
@@ -34,7 +41,7 @@ function SideMenu({ editor }: any) {
         className={styles.tooltip}
         style={isModalopen ? { opacity: 1 } : { opacity: 0, display: "none" }}
       >
-        <span className={styles.openIcon}>
+        <span className={styles.openIcon} onClick={addImage}>
           <PhotographIcon style={iconStyle} />
         </span>
         <span className={styles.openIcon}>
