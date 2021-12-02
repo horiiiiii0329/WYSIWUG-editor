@@ -500,6 +500,26 @@
     prosemirror-transform "^1.3.3"
     prosemirror-view "^1.23.1"
 
+"@tiptap/core@^2.0.0-beta.144":
+  version "2.0.0-beta.144"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.144.tgz#c9bca7ef33180bcfe6ac333ffa37a8dc2224a75d"
+  integrity sha512-lrQafgIRzJhRkShIRNfRCwJdSXbhm5ZUCBbPzYCHjiqP6dcmKBfdA+tuE3gSE89Tp5vZciCNKImMhSaX1Z7RrA==
+  dependencies:
+    "@types/prosemirror-commands" "^1.0.4"
+    "@types/prosemirror-keymap" "^1.0.4"
+    "@types/prosemirror-model" "^1.13.2"
+    "@types/prosemirror-schema-list" "^1.0.3"
+    "@types/prosemirror-state" "^1.2.8"
+    "@types/prosemirror-transform" "^1.1.4"
+    "@types/prosemirror-view" "^1.19.1"
+    prosemirror-commands "^1.1.12"
+    prosemirror-keymap "^1.1.5"
+    prosemirror-model "^1.15.0"
+    prosemirror-schema-list "^1.1.6"
+    prosemirror-state "^1.3.4"
+    prosemirror-transform "^1.3.3"
+    prosemirror-view "^1.23.1"
+
 "@tiptap/extension-blockquote@^2.0.0-beta.25":
   version "2.0.0-beta.25"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-blockquote/-/extension-blockquote-2.0.0-beta.25.tgz#f133381163b92b34d9dc6e0d78a52cf56098eb40"

@@ -7,8 +7,8 @@ import {
 } from "@heroicons/react/outline";
 import styles from "./SideMenu.module.css";
 import { useState, useEffect } from "react";
-import { rootCertificates } from "tls";
 import GiphyJS from "../blocks/giphy/GiphyJS";
+import { giphyLogo } from "../icon";
 
 const iconStyle = { width: "12px" };
 
@@ -44,9 +44,7 @@ function SideMenu({ editor }: any) {
         <span className={styles.openIcon} onClick={addImage}>
           <PhotographIcon style={iconStyle} />
         </span>
-        <span className={styles.openIcon}>
-          <VideoCameraIcon style={iconStyle} />
-        </span>
+
         <span className={styles.openIcon}>
           <FilmIcon style={iconStyle} />
         </span>

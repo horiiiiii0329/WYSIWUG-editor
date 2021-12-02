@@ -353,9 +353,9 @@ export function insertorderedlist() {
 export function giphyLogo() {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 1 20 20"
+      width="14"
+      height="14"
+      viewBox="0 0 19 19"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g id="Page-1" fill="none" fillRule="evenodd">

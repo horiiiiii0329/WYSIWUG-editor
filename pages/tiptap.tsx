@@ -14,7 +14,6 @@ import PopupMenu from "../components/popupmenu/PopupMenu";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 
-// eslint-disable-next-line import/no-anonymous-default-export
 // eslint-disable-next-line react/display-name
 export default () => {
   const [gif, setGif] = useState([]);
