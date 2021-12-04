@@ -25,7 +25,42 @@ function PopupMenu({ editor }: any) {
   }
 
   if (!editor.isEditable) return null;
-  if (editor.isActive("image")) return null;
+  if (editor.isActive("image")) {
+    return (
+      <ul className={styles.wrapper}>
+        <li>
+          <span
+            className={
+              editor.isActive("left") ? styles.icon : styles.isActiveIcon
+            }
+            onClick={() => editor.chain().focus().setTextAlign("left").run()}
+          >
+            <i className="ri-links-line"></i>
+          </span>
+        </li>
+        <li>
+          <span
+            className={
+              editor.isActive("center") ? styles.icon : styles.isActiveIcon
+            }
+            onClick={() => editor.chain().focus().setTextAlign("center").run()}
+          >
+            <i className="ri-links-line"></i>
+          </span>
+        </li>
+        <li>
+          <span
+            className={
+              editor.isActive("right") ? styles.icon : styles.isActiveIcon
+            }
+            onClick={() => editor.chain().focus().setTextAlign("right").run()}
+          >
+            <i className="ri-links-line"></i>
+          </span>
+        </li>
+      </ul>
+    );
+  }
 
   return (
     <ul className={styles.wrapper}>

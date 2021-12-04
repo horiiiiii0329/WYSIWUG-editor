@@ -14,12 +14,22 @@ import PopupMenu from "../components/popupmenu/PopupMenu";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import "remixicon/fonts/remixicon.css";
+import TextAlign from "@tiptap/extension-text-align";
 
 // eslint-disable-next-line react/display-name
 export default () => {
   const [gif, setGif] = useState([]);
   const editor = useEditor({
-    extensions: [StarterKit, Link, Image],
+    extensions: [
+      StarterKit,
+      Link,
+      Image.configure({
+        HTMLAttributes: {},
+        inline: true,
+      }),
+      TextAlign.configure({ types: ["paragraph", "image"] }),
+    ],
+
     content: `
      aa
     `,
