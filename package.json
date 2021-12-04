@@ -26,6 +26,8 @@
     "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-masonry-css": "^1.0.16",
+    "react-responsive-masonry": "^2.1.4",
     "remixicon": "^2.5.0",
     "remixicon-react": "^1.0.0",
     "slate": "^0.71.0",
@@ -33,7 +35,7 @@
     "slate-react": "^0.71.0"
   },
   "devDependencies": {
-    "@types/node": "16.11.10",
+    "@types/node": "^16.11.11",
     "@types/react": "17.0.37",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
