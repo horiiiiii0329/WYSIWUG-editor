@@ -3,3 +3,18 @@
   border: black solid 1px;
   margin: 0 auto;
 }
+
+.wrapper a {
+  color: rgb(43, 43, 43);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wrapper code {
+  background-color: rgba(#616161, 0.1);
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  color: #616161;
+  font-size: 0.9rem;
+  padding: 0.25em;
+}
