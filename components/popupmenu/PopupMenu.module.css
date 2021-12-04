@@ -1,21 +1,11 @@
 .wrapper {
   z-index: 10;
-  top: 0;
-  left: 0;
-  display: block;
-  white-space: nowrap;
-  list-style: none;
-  padding: 0;
-  line-height: 0;
+  list-style-type: none;
   display: flex;
-  background: white;
-  border: black solid 1px;
-  overflow: hidden;
-  padding-left: 0;
-  padding-right: 0;
-  line-height: 1;
-  margin: 0px;
   align-items: center;
+  border: black solid 1px;
+  background-color: white;
+  justify-content: space-between;
 }
 
 .wrapper:first-of-type {
@@ -31,8 +21,16 @@
 }
 
 .icon {
-  padding: 5px;
+  padding: 3px 5px;
   min-width: 10px;
-  display: inline-block;
-  font-size: 12px;
+  font-size: 15px;
+  filter: opacity(100%);
+}
+
+.isActiveIcon {
+  padding: 3px 5px;
+  min-width: 10px;
+
+  font-size: 15px;
+  filter: opacity(60%);
 }

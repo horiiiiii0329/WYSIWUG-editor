@@ -13,6 +13,7 @@ import axios from "axios";
 import PopupMenu from "../components/popupmenu/PopupMenu";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
+import "remixicon/fonts/remixicon.css";
 
 // eslint-disable-next-line react/display-name
 export default () => {

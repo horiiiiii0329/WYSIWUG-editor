@@ -2,18 +2,20 @@ import {
   XIcon,
   PhotographIcon,
   MinusIcon,
-  VideoCameraIcon,
   FilmIcon,
 } from "@heroicons/react/outline";
 import styles from "./SideMenu.module.css";
 import { useState, useEffect } from "react";
-import GiphyJS from "../blocks/giphy/GiphyJS";
-import { giphyLogo } from "../icon";
 
 const iconStyle = { width: "12px" };
 
 function SideMenu({ editor }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
+  const [isGiphyOpen, setIsGiphyOpen] = useState(false);
+
+  useEffect(() => {
+    setIsModalOpen(false);
+  }, [editor]);
 
   const setHorizontal = () => editor.chain().focus().setHorizontalRule().run();
 
@@ -45,7 +47,10 @@ function SideMenu({ editor }: any) {
           <PhotographIcon style={iconStyle} />
         </span>
 
-        <span className={styles.openIcon}>
+        <span
+          className={styles.openIcon}
+          onClick={() => setIsGiphyOpen(!isGiphyOpen)}
+        >
           <FilmIcon style={iconStyle} />
         </span>
         <span className={styles.openIcon} onClick={setHorizontal}>

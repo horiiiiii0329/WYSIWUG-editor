@@ -1,17 +1,5 @@
 import "remixicon/fonts/remixicon.css";
 import { useCallback } from "react";
-import {
-  bold,
-  italic,
-  insertunorderedlist,
-  insertorderedlist,
-  link,
-  h1,
-  h2,
-  h3,
-  blockquote,
-  code,
-} from "../icon";
 import styles from "./PopupMenu.module.css";
 
 function PopupMenu({ editor }: any) {
@@ -37,69 +25,117 @@ function PopupMenu({ editor }: any) {
   }
 
   if (!editor.isEditable) return null;
-  if (editor.isActive("ImageBlock")) return null;
+  if (editor.isActive("image")) return null;
 
   return (
-    <div className={styles.wrapper}>
-      <li className={``}>
-        <span className={styles.icon} onClick={setLink}>
-          {link()}
+    <ul className={styles.wrapper}>
+      <li>
+        <span
+          className={
+            editor.isActive("link") ? styles.icon : styles.isActiveIcon
+          }
+          onClick={setLink}
+        >
+          <i className="ri-links-line"></i>
         </span>
       </li>
 
       <li
-        onClick={() => editor.chain().focus().toggleBold().run()}
-        className={"bold"}
+        onClick={() => {
+          editor.chain().focus().toggleBold().run();
+          console.log(editor.isActive("bold"));
+        }}
+        className={editor.isActive("bold") ? styles.icon : styles.isActiveIcon}
       >
-        <span className={styles.icon}>{bold()}</span>
+        <span className={styles.icon}>
+          <i className="ri-bold"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleItalic().run()}
-        className={"italic"}
+        className={
+          editor.isActive("italic") ? styles.icon : styles.isActiveIcon
+        }
       >
-        <span className={styles.icon}>{italic()}</span>
+        <span className={styles.icon}>
+          <i className="ri-italic"></i>
+        </span>
       </li>
 
       <li
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
       >
-        <span className={styles.icon}>{h1()}</span>
+        <span
+          className={
+            editor.isActive({ level: 1 }) ? styles.icon : styles.isActiveIcon
+          }
+        >
+          <i className="ri-h-1"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
       >
-        <span className={styles.icon}>{h2()}</span>
+        <span
+          className={
+            editor.isActive({ level: 2 }) ? styles.icon : styles.isActiveIcon
+          }
+        >
+          <i className="ri-h-2"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
       >
-        <span className={styles.icon}>{h3()}</span>
+        <span
+          className={
+            editor.isActive({ level: 3 }) ? styles.icon : styles.isActiveIcon
+          }
+        >
+          <i className="ri-h-3"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleBulletList().run()}
-        className={"bulletList"}
+        className={
+          editor.isActive("bulletList") ? styles.icon : styles.isActiveIcon
+        }
       >
-        <span className={styles.icon}>{insertunorderedlist()}</span>
+        <span className={styles.icon}>
+          <i className="ri-list-unordered"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        className={"orderedList"}
+        className={
+          editor.isActive("orderedList") ? styles.icon : styles.isActiveIcon
+        }
       >
-        <span className={styles.icon}>{insertorderedlist()}</span>
+        <span className={styles.icon}>
+          <i className="ri-list-ordered"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={"codeBlock"}
+        className={
+          editor.isActive("codeBlock") ? styles.icon : styles.isActiveIcon
+        }
       >
-        <span className={styles.icon}>{code()}</span>
+        <span className={styles.icon}>
+          <i className="ri-code-line"></i>
+        </span>
       </li>
       <li
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={"blockquote"}
+        className={
+          editor.isActive("blockQuote") ? styles.icon : styles.isActiveIcon
+        }
       >
-        <span className={styles.icon}>{blockquote()}</span>
+        <span className={styles.icon}>
+          <i className="ri-double-quotes-r"></i>
+        </span>
       </li>
-    </div>
+    </ul>
   );
 }
 
