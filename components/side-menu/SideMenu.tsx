@@ -10,12 +10,13 @@ import GiphyJS from "../blocks/giphy/GiphyJS";
 
 const iconStyle = { width: "12px" };
 
-function SideMenu({ editor }: any) {
+function SideMenu({ editor, gifClickHandler }: any) {
   const [isModalopen, setIsModalOpen] = useState(false);
   const [isGiphyOpen, setIsGiphyOpen] = useState(false);
 
   useEffect(() => {
     setIsModalOpen(false);
+    setIsGiphyOpen(false);
   }, [editor]);
 
   const setHorizontal = () => editor.chain().focus().setHorizontalRule().run();
@@ -50,12 +51,8 @@ function SideMenu({ editor }: any) {
           <PhotographIcon style={iconStyle} />
         </span>
 
-        <span
-          className={styles.openIcon}
-          onClick={() => setIsGiphyOpen(!isGiphyOpen)}
-        >
+        <span className={styles.openIcon} onClick={gifClickHandler}>
           <FilmIcon style={iconStyle} />
-          <GiphyJS />
         </span>
         <span className={styles.openIcon} onClick={setHorizontal}>
           <MinusIcon style={iconStyle} />

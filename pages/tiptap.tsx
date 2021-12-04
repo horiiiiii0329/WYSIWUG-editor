@@ -15,10 +15,37 @@ import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import "remixicon/fonts/remixicon.css";
 import TextAlign from "@tiptap/extension-text-align";
+import Giphy from "../components/blocks/giphy/Giphy";
+import Modal from "react-modal";
+
+Modal.setAppElement();
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    border: "none",
+    backgroundColor: "transparent",
+    padding: "0px",
+  },
+};
 
 // eslint-disable-next-line react/display-name
 export default () => {
-  const [gif, setGif] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -35,54 +62,40 @@ export default () => {
     `,
   });
 
-  useEffect(() => {
-    search("", "trend");
-  }, []);
-
-  const search = (term: any, kind = "search") => {
-    const url =
-      kind === "search"
-        ? `https://api.giphy.com/v1/gifs/search?q=lololol`
-        : `https://api.giphy.com/v1/gifs/trending?q=lololol`;
-    const link = `${url}&limit=10&api_key=KpSOOvXbvl7rusKvx7Axl8BFI2QjmYXY`;
-
-    axios
-      .get(link)
-      .then((response) => {
-        // handle success
-        setGif(response.data.data);
-        // console.log(response);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
-  };
-
   return (
-    <div className={styles.wrapper}>
-      <EditorContent editor={editor} />
-      {editor && (
-        <BubbleMenu
-          className="bubble-menu"
-          tippyOptions={{ duration: 100 }}
-          editor={editor}
-        >
-          <PopupMenu editor={editor} />
-        </BubbleMenu>
-      )}
+    <>
+      <div className={styles.wrapper}>
+        <EditorContent editor={editor} />
+        {editor && (
+          <BubbleMenu
+            className="bubble-menu"
+            tippyOptions={{ duration: 100 }}
+            editor={editor}
+          >
+            <PopupMenu editor={editor} />
+          </BubbleMenu>
+        )}
 
-      {editor && (
-        <FloatingMenu editor={editor}>
-          <div style={{ position: "absolute", top: -15, left: -60 }}>
-            <SideMenu
-              position={{}}
-              editor={editor}
-              display={true || "displaySidebar"}
-            />
-          </div>
-        </FloatingMenu>
-      )}
-    </div>
+        {editor && (
+          <FloatingMenu editor={editor}>
+            <div style={{ position: "absolute", top: -15, left: -60 }}>
+              <SideMenu
+                position={{}}
+                editor={editor}
+                display={true || "displaySidebar"}
+                gifClickHandler={openModal}
+              />
+            </div>
+          </FloatingMenu>
+        )}
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+        >
+          <Giphy />
+        </Modal>
+      </div>
+    </>
   );
 };

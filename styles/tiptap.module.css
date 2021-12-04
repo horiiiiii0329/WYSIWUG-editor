@@ -50,6 +50,25 @@
 }
 
 .wrapper hr {
-  border: 1px solid rgba(#0d0d0d, 0.1);
-  margin: 1rem 2rem;
+  text-align: center;
+  width: 100%;
+  display: block;
+  border: none;
+}
+
+.wrapper hr:before {
+  line-height: 1;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 18px;
+  content: "...";
+  display: inline-block;
+  margin-left: 0.6em;
+  position: relative;
+  color: #4a4a4a;
+  top: -3px;
 }
