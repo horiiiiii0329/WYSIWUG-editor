@@ -1,11 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./Giphy.module.css";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 function Giphy({ handleSelected }: any) {
   const [gifs, setGif] = useState<any>([]);
   const [term, setTerm] = useState("");
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
   const [input_ref, setInput] = useState<any>(null);
 
   const onSearchSubmit = (e: any) => {
@@ -47,35 +49,35 @@ function Giphy({ handleSelected }: any) {
     setTerm(term);
   };
 
+  console.log(gifs);
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.searchbox}>
-          <input
-            ref={(c) => setInput(c)}
-            type="text"
-            placeholder={"search gif"}
-            value={term}
-            onChange={handleChange}
-            onKeyDown={onSearchSubmit}
-          />
-        </div>
-        <div className={styles.gridContainer}>
-          <div className={styles.gridList}>
-            {gifs.map((item: any) => {
+      <div className={styles.searchbox}>
+        <input
+          ref={(c) => setInput(c)}
+          type="text"
+          placeholder={"search gif"}
+          value={term}
+          onChange={handleChange}
+          onKeyDown={onSearchSubmit}
+        />
+      </div>
+      <div className={styles.gridwrapper}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+          <Masonry columnsCount={3} gutter="10px">
+            {gifs.map((item: any, index: number) => (
               // eslint-disable-next-line @next/next/no-img-element
+
               <img
-                alt="giphy"
-                key={`giphy-${item.id}`}
-                onClick={(_e) => handleSelected(item)}
-                height={item.images.fixed_width_downsampled.height}
-                width={item.images.fixed_width_downsampled.width}
                 src={item.images.fixed_width_downsampled.url}
+                alt="aaaaaaaaa"
                 className={styles.image}
-              />;
-            })}
-          </div>
-        </div>
+                key={index}
+              />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </div>
     </div>
   );

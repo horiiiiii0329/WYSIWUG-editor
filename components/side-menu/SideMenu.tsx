@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/outline";
 import styles from "./SideMenu.module.css";
 import { useState, useEffect } from "react";
+import GiphyJS from "../blocks/giphy/GiphyJS";
 
 const iconStyle = { width: "12px" };
 
@@ -54,6 +55,7 @@ function SideMenu({ editor }: any) {
           onClick={() => setIsGiphyOpen(!isGiphyOpen)}
         >
           <FilmIcon style={iconStyle} />
+          <GiphyJS />
         </span>
         <span className={styles.openIcon} onClick={setHorizontal}>
           <MinusIcon style={iconStyle} />

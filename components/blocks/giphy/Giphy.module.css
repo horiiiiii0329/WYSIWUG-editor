@@ -1,86 +1,25 @@
-.container {
+.wrapper {
+  border-radius: 1em;
   padding: 10px;
+  width: 400px;
+  border: black solid 2px;
+}
+
+.gridwrapper {
+  overflow-y: scroll;
+
+  height: 300px;
 }
 
 .searchbox {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
+  border-bottom: black solid 2px;
 }
 
-.searchbox:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: #c4e17f;
-  background-image: -webkit-linear-gradient(
-    left,
-    #fff35c,
-    #fff35c,
-    #ff6666,
-    #ff6666,
-    #9933ff,
-    #9933ff,
-    #00ccff,
-    #00ccff,
-    #00ff99,
-    #00ff99
-  );
-  background-image: -moz-linear-gradient(
-    left,
-    #fff35c,
-    #fff35c,
-    #ff6666,
-    #ff6666,
-    #9933ff,
-    #9933ff,
-    #00ccff,
-    #00ccff,
-    #00ff99,
-    #00ff99
-  );
-  background-image: -o-linear-gradient(
-    left,
-    #fff35c,
-    #fff35c,
-    #ff6666,
-    #ff6666,
-    #9933ff,
-    #9933ff,
-    #00ccff,
-    #00ccff,
-    #00ff99,
-    #00ff99
-  );
-  background-image: linear-gradient(
-    left,
-    #fff35c,
-    #fff35c,
-    #ff6666,
-    #ff6666,
-    #9933ff,
-    #9933ff,
-    #00ccff,
-    #00ccff,
-    #00ff99,
-    #00ff99
-  );
-}
-
-.gridList {
-  display: flex;
-  display: flex;
-  flex-flow: row wrap;
-  margin-left: 0px;
+.searchbox input {
+  font-size: 16px;
   width: 100%;
-}
-
-.image {
-  flex: auto;
-  height: 250px;
-  min-width: 150px;
-  margin: 0 0px 8px 0;
+  border: none;
+  outline: none;
+  padding-bottom: 8px;
 }
