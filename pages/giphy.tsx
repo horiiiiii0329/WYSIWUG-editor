@@ -51,34 +51,18 @@ function Giphy({ handleSelected }: any) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <div className={styles.searchbox}>
-          <input
-            ref={(c) => setInput(c)}
-            type="text"
-            placeholder={"search gif"}
-            value={term}
-            onChange={handleChange}
-            onKeyDown={onSearchSubmit}
-          />
-        </div>
-        <div className={styles.gridContainer}>
-          <div className={styles.gridList}>
-            {gifs.map((item: any) => {
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.images.fixed_width_downsampled.url}
-                alt="giphy"
-                key={`giphy-${item.id}`}
-                onClick={(_e) => handleSelected(item)}
-                height={item.images.fixed_width_downsampled.height}
-                width={item.images.fixed_width_downsampled.width}
-                className={styles.image}
-              />;
-            })}
-          </div>
-        </div>
+      <div className={styles.searchbox}>
+        <input
+          ref={(c) => setInput(c)}
+          type="text"
+          placeholder={"search gif"}
+          value={term}
+          onChange={handleChange}
+          onKeyDown={onSearchSubmit}
+        />
       </div>
+
+      <img src={gifs[0].images.fixed_width_downsampled.url} alt="aaaaaaaaa" />
     </div>
   );
 }
