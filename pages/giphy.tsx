@@ -63,20 +63,22 @@ function Giphy({ handleSelected }: any) {
           onKeyDown={onSearchSubmit}
         />
       </div>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        <Masonry columnsCount={3} gutter="10px">
-          {gifs.map((item: any, index: number) => (
-            // eslint-disable-next-line @next/next/no-img-element
+      <div className={styles.gridwrapper}>
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+          <Masonry columnsCount={3} gutter="10px">
+            {gifs.map((item: any, index: number) => (
+              // eslint-disable-next-line @next/next/no-img-element
 
-            <img
-              src={item.images.fixed_width_downsampled.url}
-              alt="aaaaaaaaa"
-              className={styles.image}
-              key={index}
-            />
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+              <img
+                src={item.images.fixed_width_downsampled.url}
+                alt="aaaaaaaaa"
+                className={styles.image}
+                key={index}
+              />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     </div>
   );
 }
