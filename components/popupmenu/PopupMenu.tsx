@@ -25,27 +25,32 @@ function PopupMenu({ editor }: any) {
   }
 
   if (!editor.isEditable) return null;
+
   if (editor.isActive("image")) {
     return (
       <ul className={styles.wrapper}>
         <li>
           <span
             className={
-              editor.isActive("left") ? styles.icon : styles.isActiveIcon
+              editor.isActive({ textAlign: "left" })
+                ? styles.icon
+                : styles.isActiveIcon
             }
             onClick={() => editor.chain().focus().setTextAlign("left").run()}
           >
-            <i className="ri-links-line"></i>
+            <i className="ri-align-left"></i>
           </span>
         </li>
         <li>
           <span
             className={
-              editor.isActive("center") ? styles.icon : styles.isActiveIcon
+              editor.isActive({ textAlign: "center" })
+                ? styles.icon
+                : styles.isActiveIcon
             }
             onClick={() => editor.chain().focus().setTextAlign("center").run()}
           >
-            <i className="ri-links-line"></i>
+            <i className="ri-align-center"></i>
           </span>
         </li>
         <li>
@@ -55,7 +60,7 @@ function PopupMenu({ editor }: any) {
             }
             onClick={() => editor.chain().focus().setTextAlign("right").run()}
           >
-            <i className="ri-links-line"></i>
+            <i className="ri-align-right"></i>
           </span>
         </li>
       </ul>

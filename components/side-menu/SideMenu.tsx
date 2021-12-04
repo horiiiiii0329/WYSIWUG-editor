@@ -26,6 +26,8 @@ function SideMenu({ editor }: any) {
     }
   };
 
+  if (editor.isActive("image")) return null;
+
   return (
     <div className={styles.wrapper}>
       <div
