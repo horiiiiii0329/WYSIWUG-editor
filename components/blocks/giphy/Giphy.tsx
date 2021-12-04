@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./Giphy.module.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-function Giphy({ handleSelected }: any) {
+function Giphy({ closeModal, editor }: any) {
   const [gifs, setGif] = useState<any>([]);
   const [term, setTerm] = useState("");
   const [limit, setLimit] = useState(20);
@@ -65,7 +65,7 @@ function Giphy({ handleSelected }: any) {
       </div>
       <div className={styles.gridwrapper}>
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <Masonry columnsCount={3} gutter="10px">
+          <Masonry columnsCount={3} gutter="10px" onClick={() => closeModal}>
             {gifs.map((item: any, index: number) => (
               // eslint-disable-next-line @next/next/no-img-element
 
@@ -74,6 +74,13 @@ function Giphy({ handleSelected }: any) {
                 alt="aaaaaaaaa"
                 className={styles.image}
                 key={index}
+                onClick={() => {
+                  editor
+                    .chain()
+                    .focus()
+                    .setImage({ src: item.images.fixed_width_downsampled.url })
+                    .run();
+                }}
               />
             ))}
           </Masonry>

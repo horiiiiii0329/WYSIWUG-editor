@@ -34,12 +34,9 @@ function Giphy({ handleSelected }: any) {
     axios
       .get(link)
       .then((response) => {
-        // handle success
         setGif(response.data.data);
-        // console.log(response);
       })
       .catch((error) => {
-        // handle error
         console.log(error);
       });
   };

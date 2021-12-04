@@ -93,7 +93,7 @@ export default () => {
           onRequestClose={closeModal}
           style={customStyles}
         >
-          <Giphy />
+          <Giphy editor={editor} closeModal={closeModal} />
         </Modal>
       </div>
     </>
