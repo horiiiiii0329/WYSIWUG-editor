@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./Giphy.module.css";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-function Giphy({ closeModal, editor }: any) {
+function Giphy({ closeModalHandler, editor }: any) {
   const [gifs, setGif] = useState<any>([]);
   const [term, setTerm] = useState("");
   const [limit, setLimit] = useState(20);
@@ -49,7 +49,9 @@ function Giphy({ closeModal, editor }: any) {
     setTerm(term);
   };
 
-  console.log(gifs);
+  const addImage = (url: string) => {
+    editor.chain().focus().setImage({ src: url }).run();
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -63,9 +65,13 @@ function Giphy({ closeModal, editor }: any) {
           onKeyDown={onSearchSubmit}
         />
       </div>
-      <div className={styles.gridwrapper}>
+      <div className={styles.gridwrapper} onClick={closeModalHandler}>
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <Masonry columnsCount={3} gutter="10px" onClick={() => closeModal}>
+          <Masonry
+            columnsCount={3}
+            gutter="10px"
+            onClick={() => closeModalHandler}
+          >
             {gifs.map((item: any, index: number) => (
               // eslint-disable-next-line @next/next/no-img-element
 
@@ -75,11 +81,7 @@ function Giphy({ closeModal, editor }: any) {
                 className={styles.image}
                 key={index}
                 onClick={() => {
-                  editor
-                    .chain()
-                    .focus()
-                    .setImage({ src: item.images.fixed_width_downsampled.url })
-                    .run();
+                  addImage(item.images.fixed_width_downsampled.url);
                 }}
               />
             ))}

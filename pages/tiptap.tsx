@@ -93,7 +93,7 @@ export default () => {
           onRequestClose={closeModal}
           style={customStyles}
         >
-          <Giphy editor={editor} closeModal={closeModal} />
+          <Giphy editor={editor} closeModalHandler={() => setIsOpen(false)} />
         </Modal>
       </div>
     </>
