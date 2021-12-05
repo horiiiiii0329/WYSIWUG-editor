@@ -33,6 +33,54 @@ function PopupMenu({ editor }: any) {
           <span
             className={
               editor.isActive("custom-image", {
+                size: "small",
+              })
+                ? styles.icon
+                : styles.isActiveIcon
+            }
+            onClick={() =>
+              editor.chain().focus().setImage({ size: "small" }).run()
+            }
+          >
+            <i className="ri-image-line ri-xxs"></i>
+          </span>
+        </li>
+        <li>
+          <span
+            className={
+              editor.isActive("custom-image", {
+                size: "medium",
+              })
+                ? styles.icon
+                : styles.isActiveIcon
+            }
+            onClick={() =>
+              editor.chain().focus().setImage({ size: "medium" }).run()
+            }
+          >
+            <i className="ri-image-line ri-xs"></i>
+          </span>
+        </li>
+        <li>
+          <span
+            className={
+              editor.isActive("custom-image", {
+                size: "large",
+              })
+                ? styles.icon
+                : styles.isActiveIcon
+            }
+            onClick={() =>
+              editor.chain().focus().setImage({ size: "large" }).run()
+            }
+          >
+            <i className="ri-image-line"></i>
+          </span>
+        </li>
+        <li>
+          <span
+            className={
+              editor.isActive("custom-image", {
                 float: "left",
               })
                 ? styles.icon
