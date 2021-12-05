@@ -63,7 +63,10 @@ export default () => {
   });
 
   return (
-    <div className="frame">
+    <div
+      className="frame
+    "
+    >
       <EditorContent editor={editor} />
       {editor && (
         <BubbleMenu
@@ -77,7 +80,7 @@ export default () => {
 
       {editor && (
         <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <div style={{ position: "absolute", top: -15, left: -60 }}>
+          <div style={{ position: "absolute", top: -15, left: -55 }}>
             <SideMenu
               position={{}}
               editor={editor}

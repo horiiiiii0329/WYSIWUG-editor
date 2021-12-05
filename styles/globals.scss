@@ -72,6 +72,8 @@ a {
 }
 
 .ProseMirror {
+  transition: all 1s ease-in;
+
   &:focus,
   &:active {
     outline: none;

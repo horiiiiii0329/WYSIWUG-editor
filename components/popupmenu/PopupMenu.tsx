@@ -42,7 +42,7 @@ function PopupMenu({ editor }: any) {
               editor.chain().focus().setImage({ size: "small" }).run()
             }
           >
-            <i className="ri-image-line ri-xxs"></i>
+            <i className="ri-image-line ri-xs"></i>
           </span>
         </li>
         <li>
@@ -58,7 +58,7 @@ function PopupMenu({ editor }: any) {
               editor.chain().focus().setImage({ size: "medium" }).run()
             }
           >
-            <i className="ri-image-line ri-xs"></i>
+            <i className="ri-image-line ri-sm"></i>
           </span>
         </li>
         <li>

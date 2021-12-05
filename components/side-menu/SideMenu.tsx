@@ -17,7 +17,7 @@ function SideMenu({ editor, gifClickHandler }: any) {
   useEffect(() => {
     setIsModalOpen(false);
     setIsGiphyOpen(false);
-  }, [editor]);
+  }, [editor.state]);
 
   const setHorizontal = () => editor.chain().focus().setHorizontalRule().run();
 
@@ -30,7 +30,13 @@ function SideMenu({ editor, gifClickHandler }: any) {
 
   if (editor.isActive("image")) return null;
 
-  console.log("ENABLED FOR ", editor.state.selection.$anchor.parent);
+  console.log(editor.state);
+
+  const handleKeypress = (e: any) => {
+    if (e.keyCode) {
+      console.log(e.keycode);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -48,6 +54,7 @@ function SideMenu({ editor, gifClickHandler }: any) {
       <div
         className={styles.tooltip}
         style={isModalopen ? { opacity: 1 } : { opacity: 0, display: "none" }}
+        onBlur={() => setIsModalOpen(false)}
       >
         <span className={styles.openIcon} onClick={addImage}>
           <PhotographIcon style={iconStyle} />
