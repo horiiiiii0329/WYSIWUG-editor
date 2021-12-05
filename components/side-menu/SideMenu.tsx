@@ -59,6 +59,14 @@ function SideMenu({ editor, gifClickHandler }: any) {
         <span className={styles.openIcon} onClick={setHorizontal}>
           <MinusIcon style={iconStyle} />
         </span>
+        <span
+          className={styles.openIcon}
+          onClick={() => editor.chain().focus().unsetTextAlign().run()}
+        >
+          <span>
+            <i className="ri-align-left ri-xs"></i>
+          </span>
+        </span>
       </div>
     </div>
   );

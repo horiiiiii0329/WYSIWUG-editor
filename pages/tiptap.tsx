@@ -17,6 +17,8 @@ import "remixicon/fonts/remixicon.css";
 import TextAlign from "@tiptap/extension-text-align";
 import Giphy from "../components/blocks/giphy/Giphy";
 import Modal from "react-modal";
+import CustomImage from "../extensions/image";
+import Video from "../extensions/video";
 
 Modal.setAppElement();
 
@@ -54,6 +56,12 @@ export default () => {
         inline: true,
       }),
       TextAlign.configure({ types: ["paragraph", "image"] }),
+      CustomImage.configure({
+        HTMLAttributes: {
+          class: "custom-image",
+        },
+      }),
+      Video,
     ],
 
     content: `

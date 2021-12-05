@@ -15,8 +15,8 @@
   background: white;
   border-radius: 50%;
   justify-content: center;
-  transition: all 250ms;
   margin-right: 5px;
+  justify-content: center;
 }
 
 .tooltip {
