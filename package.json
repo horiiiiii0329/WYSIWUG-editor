@@ -8,11 +8,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@draft-js-plugins/side-toolbar": "^5.0.0",
     "@emotion/react": "^11.7.0",
     "@giphy/js-fetch-api": "^4.1.2",
     "@giphy/react-components": "^5.4.0",
     "@heroicons/react": "^1.0.5",
-    "@tiptap/core": "^2.0.0-beta.144",
+    "@tiptap/core": "^2.0.0-beta.148",
+    "@tiptap/extension-floating-menu": "^2.0.0-beta.46",
     "@tiptap/extension-horizontal-rule": "^2.0.0-beta.30",
     "@tiptap/extension-image": "^2.0.0-beta.24",
     "@tiptap/extension-link": "^2.0.0-beta.28",

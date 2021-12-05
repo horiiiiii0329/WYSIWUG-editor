@@ -51,14 +51,12 @@ export default () => {
       StarterKit,
       Link,
       Image.configure({
-        HTMLAttributes: {},
         inline: true,
       }),
       TextAlign.configure({ types: ["paragraph", "image"] }),
     ],
 
     content: `
-     aa
     `,
   });
 
@@ -77,7 +75,7 @@ export default () => {
         )}
 
         {editor && (
-          <FloatingMenu editor={editor}>
+          <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
             <div style={{ position: "absolute", top: -15, left: -60 }}>
               <SideMenu
                 position={{}}

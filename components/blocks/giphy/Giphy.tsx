@@ -34,12 +34,9 @@ function Giphy({ closeModalHandler, editor }: any) {
     axios
       .get(link)
       .then((response) => {
-        // handle success
         setGif(response.data.data);
-        // console.log(response);
       })
       .catch((error) => {
-        // handle error
         console.log(error);
       });
   };
@@ -77,7 +74,7 @@ function Giphy({ closeModalHandler, editor }: any) {
 
               <img
                 src={item.images.fixed_width_downsampled.url}
-                alt="aaaaaaaaa"
+                alt="an picture of gif"
                 className={styles.image}
                 key={index}
                 onClick={() => {

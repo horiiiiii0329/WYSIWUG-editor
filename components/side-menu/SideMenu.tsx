@@ -30,6 +30,8 @@ function SideMenu({ editor, gifClickHandler }: any) {
 
   if (editor.isActive("image")) return null;
 
+  console.log("ENABLED FOR ", editor.state.selection.$anchor.parent);
+
   return (
     <div className={styles.wrapper}>
       <div
