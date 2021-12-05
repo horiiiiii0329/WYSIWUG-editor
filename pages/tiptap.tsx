@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   useEditor,
   EditorContent,
@@ -8,11 +8,8 @@ import {
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import SideMenu from "../components/side-menu/SideMenu";
-import styles from "../styles/tiptap.module.css";
-import axios from "axios";
 import PopupMenu from "../components/popupmenu/PopupMenu";
 import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
 import "remixicon/fonts/remixicon.css";
 import TextAlign from "@tiptap/extension-text-align";
 import Giphy from "../components/blocks/giphy/Giphy";
@@ -52,9 +49,6 @@ export default () => {
     extensions: [
       StarterKit,
       Link,
-      Image.configure({
-        inline: true,
-      }),
       TextAlign.configure({ types: ["paragraph", "image"] }),
       CustomImage.configure({
         HTMLAttributes: {
@@ -69,39 +63,37 @@ export default () => {
   });
 
   return (
-    <>
-      <div className={styles.wrapper}>
-        <EditorContent editor={editor} />
-        {editor && (
-          <BubbleMenu
-            className="bubble-menu"
-            tippyOptions={{ duration: 100 }}
-            editor={editor}
-          >
-            <PopupMenu editor={editor} />
-          </BubbleMenu>
-        )}
-
-        {editor && (
-          <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-            <div style={{ position: "absolute", top: -15, left: -60 }}>
-              <SideMenu
-                position={{}}
-                editor={editor}
-                display={true || "displaySidebar"}
-                gifClickHandler={openModal}
-              />
-            </div>
-          </FloatingMenu>
-        )}
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
+    <div className="frame">
+      <EditorContent editor={editor} />
+      {editor && (
+        <BubbleMenu
+          className="bubble-menu"
+          tippyOptions={{ duration: 100 }}
+          editor={editor}
         >
-          <Giphy editor={editor} closeModalHandler={() => setIsOpen(false)} />
-        </Modal>
-      </div>
-    </>
+          <PopupMenu editor={editor} />
+        </BubbleMenu>
+      )}
+
+      {editor && (
+        <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
+          <div style={{ position: "absolute", top: -15, left: -60 }}>
+            <SideMenu
+              position={{}}
+              editor={editor}
+              display={true || "displaySidebar"}
+              gifClickHandler={openModal}
+            />
+          </div>
+        </FloatingMenu>
+      )}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <Giphy editor={editor} closeModalHandler={() => setIsOpen(false)} />
+      </Modal>
+    </div>
   );
 };

@@ -3,6 +3,10 @@ import { mergeAttributes } from "@tiptap/core";
 
 export default Image.extend({
   name: "custom-image",
+  defaultOptions: {
+    ...Image.options,
+    sizes: ["small", "medium", "large"],
+  },
 
   addAttributes() {
     return {

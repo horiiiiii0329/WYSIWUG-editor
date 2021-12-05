@@ -26,17 +26,21 @@ function PopupMenu({ editor }: any) {
 
   if (!editor.isEditable) return null;
 
-  if (editor.isActive("image")) {
+  if (editor.isActive("custom-image")) {
     return (
       <ul className={styles.wrapper}>
         <li>
           <span
             className={
-              editor.isActive({ textAlign: "left" })
+              editor.isActive("custom-image", {
+                float: "left",
+              })
                 ? styles.icon
                 : styles.isActiveIcon
             }
-            onClick={() => editor.chain().focus().setTextAlign("left").run()}
+            onClick={() =>
+              editor.chain().focus().setImage({ float: "left" }).run()
+            }
           >
             <i className="ri-align-left"></i>
           </span>
@@ -44,11 +48,15 @@ function PopupMenu({ editor }: any) {
         <li>
           <span
             className={
-              editor.isActive({ textAlign: "center" })
+              editor.isActive("custom-image", {
+                float: "none",
+              })
                 ? styles.icon
                 : styles.isActiveIcon
             }
-            onClick={() => editor.chain().focus().setTextAlign("center").run()}
+            onClick={() =>
+              editor.chain().focus().setImage({ float: "none" }).run()
+            }
           >
             <i className="ri-align-center"></i>
           </span>
@@ -56,9 +64,15 @@ function PopupMenu({ editor }: any) {
         <li>
           <span
             className={
-              editor.isActive("right") ? styles.icon : styles.isActiveIcon
+              editor.isActive("custom-image", {
+                float: "right",
+              })
+                ? styles.icon
+                : styles.isActiveIcon
             }
-            onClick={() => editor.chain().focus().setTextAlign("right").run()}
+            onClick={() =>
+              editor.chain().focus().setImage({ float: "right" }).run()
+            }
           >
             <i className="ri-align-right"></i>
           </span>

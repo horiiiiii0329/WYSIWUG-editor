@@ -51,3 +51,64 @@ a {
 ::-webkit-scrollbar-thumb:active {
   background: rgba(0, 0, 0, 0.9);
 }
+
+.custom-image-small {
+  max-width: 200px;
+}
+.custom-image-medium {
+  max-width: 500px;
+}
+.custom-image-large {
+  max-width: 100%;
+}
+.custom-image-float-none {
+  float: none;
+}
+.custom-image-float-left {
+  float: left;
+}
+.custom-image-float-right {
+  float: right;
+}
+
+.ProseMirror {
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    &.ProseMirror-selectednode {
+      outline: 3px solid #68cef8;
+    }
+  }
+  .custom-image-small {
+    max-width: 200px;
+  }
+  .custom-image-medium {
+    max-width: 500px;
+  }
+  .custom-image-large {
+    max-width: 100%;
+  }
+  .custom-image-float-none {
+    float: none;
+  }
+  .custom-image-float-left {
+    float: left;
+  }
+  .custom-image-float-right {
+    float: right;
+  }
+}
+
+.frame {
+  max-width: 900px;
+  background: white;
+  margin: 0 auto;
+}

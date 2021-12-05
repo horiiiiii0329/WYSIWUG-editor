@@ -12,3 +12,26 @@
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }
+
+.editor img .prosemirror-selectednode {
+  outline: 3px solid #68cef8;
+}
+
+.custom-image-small {
+  max-width: 200px;
+}
+.custom-image-medium {
+  max-width: 500px;
+}
+.custom-image-large {
+  max-width: 100%;
+}
+.custom-image-float-none {
+  float: none;
+}
+.custom-image-float-left {
+  float: left;
+}
+.custom-image-float-right {
+  float: right;
+}
